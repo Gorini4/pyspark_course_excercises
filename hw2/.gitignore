@@ -1,4 +1,5 @@
 notebooks/.ipynb_checkpoints
 notebooks/spark-warehouse
+.pytest_cache
 datasets
 .idea

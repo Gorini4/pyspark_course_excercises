@@ -42,8 +42,13 @@ https://github.com/sodadata/soda-core/blob/main/examples/pandas_dask_example.py
 Для этого можно специально "сломать" одну из проверок, как в примере с videos. 
 - В п. 2 раздела "Описание" для чтения датаеста комментариев нужно использовать команду со следующими параметрами
 
-```comments = spark.read.option('header', 'true').option("inferSchema", "true").csv('datasets/UScomments.csv')```
+```python
+comments = spark.read.option('header', 'true').schema(comments_schema) \
+.option("mode", "PERMISSIVE").option("columnNameOfCorruptRecord", "corrupt_record").csv('datasets/UScomments.csv')
+```
 - В п. 3 раздела "Описание" для чтения датаеста комментариев нужно использовать команду со следующими параметрами
 
-```comments = spark.read.option('header', 'true').option("mode", "DROPMALFORMED").schema(comments_schema).csv('datasets/UScomments.csv')```
+```python
+comments = spark.read.option('header', 'true').option("mode", "DROPMALFORMED").schema(comments_schema).csv('datasets/UScomments.csv')
+```
 
